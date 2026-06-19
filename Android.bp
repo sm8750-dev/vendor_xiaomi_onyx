@@ -41042,6 +41042,12 @@ android_app_import {
     name: "MiuiCamera",
     owner: "xiaomi",
     apk: "proprietary/system/priv-app/MiuiCamera/MiuiCamera.apk",
+    overrides: [
+        "Aperture",
+        "Camera",
+        "Camera2",
+        "GoogleCameraGo",
+    ],
     certificate: "platform",
     dex_preopt: {
         enabled: false,
@@ -43561,6 +43567,34 @@ cc_prebuilt_binary {
                 "libqmi_cci",
                 "libqmi_common_so",
                 "libdiag",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    strip: {
+        none: true,
+    },
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_binary {
+    name: "mi_thermald",
+    owner: "xiaomi",
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/bin/mi_thermald",
+            ],
+            shared_libs: [
+                "libcutils",
+                "liblog",
+                "libcrypto",
+                "libssl",
                 "libc++",
                 "libc",
                 "libm",
